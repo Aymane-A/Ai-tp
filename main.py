@@ -9,7 +9,7 @@ import heapq
 
 from math import pi 
 
-from Visualisation import plot_step_matrics, plot_radar_chart, plot_boxplots, plot_pie_charts, plot_performance_comparaison
+from visualisation import plot_step_matrics, plot_radar_chart, plot_boxplots, plot_pie_charts, plot_performance_comparaison
 from Algorithms import *
 from ConfigMaze import width, height, start, goal, Maze
 
@@ -24,7 +24,7 @@ def run_experiments(algorithms, runs=100):
                 'Time': matrics['time'][-1],
                 'Memory': matrics['memory'][-1],
                 'Path Length': len(path),
-                'Steps Times': matrics['time'],
+                'Step Time': matrics['time'],
                 'Step Memory': matrics['memory']
             })
     return pd.DataFrame(results)
@@ -32,7 +32,7 @@ def run_experiments(algorithms, runs=100):
 if __name__ == "__main__":
     algorithms = {
         'BFS': lambda s, g: bfs(s, g, Maze),
-        'DFS': lambda s, g: bfs(s, g, Maze),
+        'DFS': lambda s, g: dfs(s, g, Maze),
         'A*': lambda s, g: a_star(s, g, Maze, heuristic),
         'GBFS': lambda s, g: gbfs(s, g, Maze, heuristic)
     }

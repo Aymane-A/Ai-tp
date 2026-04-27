@@ -9,7 +9,7 @@ def plot_step_matrics(df):
         algo_data = df[df['Algorithm'] == algo]
         avg_time = np.mean([steps for steps in algo_data['Step Time']], axis=0)
         avg_memory = np.mean([steps for steps in algo_data['Step Memory']], axis=0)
-        plt.plot(avg_memory, linestyle = ';', marker='o', mfc='none', label=f'{algo} - Memory')
+        plt.plot(avg_memory, linestyle = '--', marker='o', mfc='none', label=f'{algo} - Memory')
         plt.plot(avg_time, label=f'{algo} - Time')
         
     plt.xlabel('Steps')
@@ -47,14 +47,14 @@ def plot_radar_chart(df):
     
     ax.grid(True)
     plt.title('Comparaison des Performances des Algorithmes (Normalise)')
-    plt.legend(loc='upper right', bbox_to_archor=(1.3, 1.1))
+    plt.legend(loc='upper right', bbox_to_anchor=(1.3, 1.1))
     plt.tight_layout()
     plt.show()
     
     
 def plot_performance_comparaison(stats):   
     fig, axes = plt.subplots(1, 3, figsize=(18, 6))
-    matrics = ['Time', 'Memory', 'Path Lenght']
+    matrics = ['Time', 'Memory', 'Path Length']
     
     for i, metric in enumerate(matrics):
         means = stats[(metric, 'mean')]
@@ -75,29 +75,29 @@ def plot_boxplots(df):
     import seaborn as sns
     fig, axes = plt.subplots(1, 3, figsize=(20, 6))
     sns.boxplot(x='Algorithm', y='Time', data=df, ax=axes[0], palette='Set3')
-    axes[0].set_title('Boxplot of time', fontsize=14)
+    axes[0].set_title('Boxplot of Memory', fontsize=14)
     axes[0].set_xlabel('Algorithm')
     axes[0].set_ylabel('Time')
     axes[0].grid(True, linestyle='--', alpha=0.6)
     
-    sns.boxplot(x='Algorithm', y='Memory', data=df, ax=axes[1], palette='set3')
-    axes[1].set_title('Boxplot of time', fontsize=14)
+    sns.boxplot(x='Algorithm', y='Memory', data=df, ax=axes[1], palette='Set3')
+    axes[1].set_title('Boxplot of Memory', fontsize=14)
     # axes[1].set_ylim([0, 40])
     axes[1].set_xlabel('Algorithm')
-    axes[1].set_ylabel('Time')
+    axes[1].set_ylabel('Memory')
     axes[1].grid(True, linestyle='--', alpha=0.6)
     
-    sns.boxplot(x='Algorithm', y='Time', data=df, ax=axes[2], palette='Set3')
-    axes[2].set_title('Boxplot of time', fontsize=14)
+    sns.boxplot(x='Algorithm', y='Path Length', data=df, ax=axes[2], palette='Set3')
+    axes[2].set_title('Boxplot of Path Length', fontsize=14)
     axes[2].set_xlabel('Algorithm')
-    axes[2].set_ylabel('Time')
+    axes[2].set_ylabel('Path Length')
     axes[2].grid(True, linestyle='--', alpha=0.6)
     
     plt.show()
     
     
 def plot_pie_charts(stats):
-    matrics = ['Time', 'Memory', 'Path lenght']
+    matrics = ['Time', 'Memory', 'Path Length']
     fig, axes = plt.subplots(1, 3, figsize=(18, 6))
     
     for i, metric in enumerate(matrics):
